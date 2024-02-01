@@ -42,15 +42,11 @@ export async function POST(req: Request) {
 
     const newBot = new Telegraf(botToken);
 
-    try {
       await TelegrafService.startBot(
         newBot,
         process.env.FRONTEND_STORE_URL!,
         store.id
       );
-    } catch (error) {
-      return new NextResponse("Internal error", { status: 500 });
-    }
 
     return NextResponse.json(store);
   } catch (error) {
