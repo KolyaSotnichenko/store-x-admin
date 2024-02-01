@@ -32,18 +32,6 @@ export async function POST(req: Request) {
       return new NextResponse("Bot token is not valid", { status: 400 });
     }
 
-    const newBot = new Telegraf(botToken);
-
-    try {
-      await TelegrafService.startBot(
-        newBot,
-        process.env.FRONTEND_STORE_URL!,
-        validBotToken.botName
-      );
-    } catch (error) {
-      return new NextResponse("Internal error", { status: 500 });
-    }
-
     const store = await prismadb.store.create({
       data: {
         name,
@@ -52,9 +40,32 @@ export async function POST(req: Request) {
       },
     });
 
+    const newBot = new Telegraf(botToken);
+
+    try {
+      await TelegrafService.startBot(
+        newBot,
+        process.env.FRONTEND_STORE_URL!,
+        store.id
+      );
+    } catch (error) {
+      return new NextResponse("Internal error", { status: 500 });
+    }
+
     return NextResponse.json(store);
   } catch (error) {
     console.log("[STORES_POST]", error);
+    return new NextResponse("Internal error", { status: 500 });
+  }
+}
+
+export async function GET() {
+  try {
+    const data = await prismadb.store.findMany();
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.log("[STORES_GET]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

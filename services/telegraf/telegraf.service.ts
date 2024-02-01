@@ -1,12 +1,12 @@
 import { Context, Markup } from "telegraf";
 
 export class TelegrafService {
-  static async startBot(bot: any, appUrl: string, botName: string) {
+  static async startBot(bot: any, appUrl: string, storeId: string) {
     bot.command("start", (ctx: Context) => {
       ctx.replyWithHTML(
         this.getHelloHtml(ctx),
         this.getActionButtons(
-          `${process.env.FRONTEND_STORE_URL}?botName=${botName}`
+          `${process.env.FRONTEND_STORE_URL}?storeId=${storeId}`
         )
       );
     });
