@@ -14,6 +14,10 @@ export class TelegrafService {
     bot.launch();
   }
 
+  static async stopBot(bot: any) {
+    bot.stop();
+  }
+
   static async tryBot(bot: any) {
     try {
       const { username } = await bot.telegram.getMe();
