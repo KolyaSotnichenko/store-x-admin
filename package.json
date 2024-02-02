@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \" next dev \" \"ts-node server.ts \"",
     "build": "next build",
-    "start": "concurrently \"next start\" \"ts-node server.ts\"",
+    "start": "concurrently \"next start\" \"NODE_ENV=production ts-node server.ts\"",
     "lint": "next lint",
     "postinstall": "prisma generate"
   },
