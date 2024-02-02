@@ -3,7 +3,8 @@ import { auth } from "@clerk/nextjs";
 
 import prismadb from "@/lib/prismadb";
 import { TelegrafService } from "@/services/telegraf/telegraf.service";
-import { Telegraf } from "telegraf";
+import { Context, Telegraf } from "telegraf";
+import { Update } from "telegraf/typings/core/types/typegram";
 
 export async function POST(req: Request) {
   try {
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
       return new NextResponse("Bot token is required", { status: 400 });
     }
 
-    const bot = new Telegraf(botToken);
+    const bot: Telegraf<Context<Update>> = new Telegraf(botToken);
 
     const validBotToken = await TelegrafService.tryBot(bot);
 
@@ -42,11 +43,11 @@ export async function POST(req: Request) {
 
     const newBot = new Telegraf(botToken);
 
-      await TelegrafService.startBot(
-        newBot,
-        process.env.FRONTEND_STORE_URL!,
-        store.id
-      );
+    await TelegrafService.startBot(
+      newBot,
+      process.env.FRONTEND_STORE_URL!,
+      store.id
+    );
 
     return NextResponse.json(store);
   } catch (error) {

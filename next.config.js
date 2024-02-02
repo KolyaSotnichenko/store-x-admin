@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     domains: ["res.cloudinary.com"],
   },
-  experimental: {
-    instrumentationHook: true,
-  },
+  // experimental: {
+  //   instrumentationHook: true,
+  // },
+
   async headers() {
     return [
       {
