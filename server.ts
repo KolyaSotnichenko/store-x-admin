@@ -18,6 +18,6 @@ app.prepare().then(() => {
 
   server.listen(3002, (err: any) => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:3002`);
+    console.log(`> Ready on 3002`);
   });
 });
