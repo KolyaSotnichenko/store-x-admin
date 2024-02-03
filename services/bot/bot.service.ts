@@ -18,12 +18,17 @@ module.exports = class BotService {
     for (const store of stores) {
       const newBot = new Telegraf(store.botToken);
       newBot.command("start", (ctx: any) => {
-        ctx.replyWithHTML(
-          BotService.getHelloHtml(ctx),
-          BotService.getActionButtons(
-            `${process.env.FRONTEND_STORE_URL}?storeId=${store.id}`
-          )
-        );
+        try {
+          ctx.replyWithHTML(
+            BotService.getHelloHtml(ctx),
+            BotService.getActionButtons(
+              `${process.env.FRONTEND_STORE_URL}?storeId=${store.id}`
+            )
+          );
+        } catch (error) {
+          console.log(error);
+          newBot.stop();
+        }
       });
 
       newBot.launch();
