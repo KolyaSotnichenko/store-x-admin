@@ -1,11 +1,11 @@
 {
-  "name": "next13-ecommerce-admin",
+  "name": "storex-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_ENV=development ts-node server.ts",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production ts-node server.ts",
     "lint": "next lint",
     "postinstall": "prisma generate",
     "start-bots": "NODE_ENV=production ts-node server.ts"

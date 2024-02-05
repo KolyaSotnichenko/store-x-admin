@@ -2,6 +2,7 @@ const express = require("express");
 const next = require("next");
 const BotService = require("./services/bot/bot.service");
 
+const port = 3000;
 const dev = process.env.NODE_ENV !== "production";
 
 const app = next({ dev });
@@ -16,8 +17,8 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  server.listen(3002, (err: any) => {
+  server.listen(port, (err: any) => {
     if (err) throw err;
-    console.log(`> Ready on 3002`);
+    console.log(`> Ready on ${port}`);
   });
 });
