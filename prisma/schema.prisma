@@ -12,6 +12,7 @@ model Store {
   id         String      @id @default(uuid())
   name       String
   botToken   String
+  botName    String
   userId     String
   billboards Billboard[] @relation("StoreToBillboard")
   categories Category[]  @relation("StoreToCategory")

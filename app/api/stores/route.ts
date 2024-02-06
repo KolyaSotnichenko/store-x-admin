@@ -38,6 +38,7 @@ export async function POST(req: Request) {
         name,
         botToken,
         userId,
+        botName: validBotToken.botName,
       },
     });
 
