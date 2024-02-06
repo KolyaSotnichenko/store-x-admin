@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development ts-node server.ts",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production ts-node server.ts",
+    "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
     "start-bots": "NODE_ENV=production ts-node server.ts"
@@ -61,7 +61,6 @@
     "zustand": "^4.3.8"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
     "prisma": "^4.16.1"
   }
 }
