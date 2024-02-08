@@ -5,6 +5,7 @@ import prismadb from "@/lib/prismadb";
 import { TelegrafService } from "@/services/telegraf/telegraf.service";
 import { Context, Telegraf } from "telegraf";
 import { Update } from "telegraf/typings/core/types/typegram";
+import { NextApiRequest } from "next";
 
 export async function POST(req: Request) {
   try {
@@ -57,7 +58,24 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(req: NextApiRequest) {
+  const { storeId } = (await req.query) || {};
+
+  if (storeId) {
+    try {
+      const data = await prismadb.store.findUnique({
+        where: {
+          id: String(storeId),
+        },
+      });
+
+      return NextResponse.json(data);
+    } catch (error) {
+      console.log("[STORES_GET]", error);
+      return new NextResponse("Internal error", { status: 500 });
+    }
+  }
+
   try {
     const data = await prismadb.store.findMany();
 
