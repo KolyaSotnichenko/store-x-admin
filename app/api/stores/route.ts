@@ -86,7 +86,7 @@ export async function POST(req: Request) {
 //   }
 // }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { storeId } = req.query;
 
@@ -100,7 +100,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (data) {
         return res.json(data);
       } else {
-        return res.status(404).json({ error: 'Store not found' });
+        return res.status(404).json({ error: "Store not found" });
       }
     } else {
       const data = await prismadb.store.findMany();
@@ -108,6 +108,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   } catch (error) {
     console.error("[STORES_GET]", error);
-    return res.status(500).json({ error: 'Internal error' });
+    return res.status(500).json({ error: "Internal error" });
   }
 }
