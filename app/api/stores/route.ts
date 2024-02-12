@@ -58,56 +58,56 @@ export async function POST(req: Request) {
   }
 }
 
-// export async function GET(req: NextApiRequest) {
-//   const { storeId } = (await req.query) || {};
+export async function GET(req: any) {
+  const { storeId } = (await req.query) || {};
 
-//   if (storeId) {
-//     try {
-//       const data = await prismadb.store.findUnique({
-//         where: {
-//           id: String(storeId),
-//         },
-//       });
-
-//       return NextResponse.json(data);
-//     } catch (error) {
-//       console.log("[STORES_GET]", error);
-//       return new NextResponse("Internal error", { status: 500 });
-//     }
-//   }
-
-//   try {
-//     const data = await prismadb.store.findMany();
-
-//     return NextResponse.json(data);
-//   } catch (error) {
-//     console.log("[STORES_GET]", error);
-//     return new NextResponse("Internal error", { status: 500 });
-//   }
-// }
-
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    const { storeId } = req.query;
-
-    if (storeId) {
+  if (storeId) {
+    try {
       const data = await prismadb.store.findUnique({
         where: {
           id: String(storeId),
         },
       });
 
-      if (data) {
-        return res.json(data);
-      } else {
-        return res.status(404).json({ error: "Store not found" });
-      }
-    } else {
-      const data = await prismadb.store.findMany();
-      return res.json(data);
+      return NextResponse.json(data);
+    } catch (error) {
+      console.log("[STORES_GET]", error);
+      return new NextResponse("Internal error", { status: 500 });
     }
+  }
+
+  try {
+    const data = await prismadb.store.findMany();
+
+    return NextResponse.json(data);
   } catch (error) {
-    console.error("[STORES_GET]", error);
-    return res.status(500).json({ error: "Internal error" });
+    console.log("[STORES_GET]", error);
+    return new NextResponse("Internal error", { status: 500 });
   }
 }
+
+// export async function GET(req: NextApiRequest, res: NextApiResponse) {
+//   try {
+//     const { storeId } = req.query;
+
+//     if (storeId) {
+//       const data = await prismadb.store.findUnique({
+//         where: {
+//           id: String(storeId),
+//         },
+//       });
+
+//       if (data) {
+//         return res.json(data);
+//       } else {
+//         return res.status(404).json({ error: "Store not found" });
+//       }
+//     } else {
+//       const data = await prismadb.store.findMany();
+//       return res.json(data);
+//     }
+//   } catch (error) {
+//     console.error("[STORES_GET]", error);
+//     return res.status(500).json({ error: "Internal error" });
+//   }
+// }
