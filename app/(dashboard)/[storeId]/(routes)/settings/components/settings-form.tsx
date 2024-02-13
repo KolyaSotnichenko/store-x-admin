@@ -28,7 +28,6 @@ import { useOrigin } from "@/hooks/use-origin";
 
 const formSchema = z.object({
   name: z.string().min(2),
-  botToken: z.string().min(43).max(46),
 });
 
 type SettingsFormValues = z.infer<typeof formSchema>;
@@ -117,23 +116,6 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
                     <Input
                       disabled={loading}
                       placeholder="Store name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="botToken"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bot token</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Bot token"
                       {...field}
                     />
                   </FormControl>

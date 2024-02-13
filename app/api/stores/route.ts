@@ -2,17 +2,13 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs";
 
 import prismadb from "@/lib/prismadb";
-import { TelegrafService } from "@/services/telegraf/telegraf.service";
-import { Context, Telegraf } from "telegraf";
-import { Update } from "telegraf/typings/core/types/typegram";
-import { NextApiRequest, NextApiResponse } from "next";
 
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
 
-    const { name, botToken } = body;
+    const { name } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 403 });
@@ -22,34 +18,35 @@ export async function POST(req: Request) {
       return new NextResponse("Name is required", { status: 400 });
     }
 
-    if (!botToken) {
-      return new NextResponse("Bot token is required", { status: 400 });
-    }
+    // if (!botToken) {
+    //   return new NextResponse("Bot token is required", { status: 400 });
+    // }
 
-    const bot: Telegraf<Context<Update>> = new Telegraf(botToken);
+    // const bot: Telegraf<Context<Update>> = new Telegraf(botToken);
 
-    const validBotToken = await TelegrafService.tryBot(bot);
+    // const validBotToken = await TelegrafService.tryBot(bot);
 
-    if (!validBotToken) {
-      return new NextResponse("Bot token is not valid", { status: 400 });
-    }
+    // if (!validBotToken) {
+    //   return new NextResponse("Bot token is not valid", { status: 400 });
+    // }
 
     const store = await prismadb.store.create({
       data: {
         name,
-        botToken,
         userId,
-        botName: validBotToken.botName,
+        botName: "",
+        botToken: "",
+        appUrl: process.env.FRONTEND_STORE_URL!,
       },
     });
 
-    const newBot = new Telegraf(botToken);
+    // const newBot = new Telegraf(botToken);
 
-    await TelegrafService.startBot(
-      newBot,
-      process.env.FRONTEND_STORE_URL!,
-      store.id
-    );
+    // await TelegrafService.startBot(
+    //   newBot,
+    //   process.env.FRONTEND_STORE_URL!,
+    //   store.id
+    // );
 
     return NextResponse.json(store);
   } catch (error) {

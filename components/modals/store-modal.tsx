@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,7 +23,6 @@ import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   name: z.string().min(1),
-  botToken: z.string().min(43).max(46),
 });
 
 export const StoreModal = () => {
@@ -37,7 +35,6 @@ export const StoreModal = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      botToken: "",
     },
   });
 
@@ -78,23 +75,6 @@ export const StoreModal = () => {
                         <Input
                           disabled={loading}
                           placeholder="E-Commerce"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="botToken"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Bot token</FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={loading}
-                          placeholder="Your token"
                           {...field}
                         />
                       </FormControl>
