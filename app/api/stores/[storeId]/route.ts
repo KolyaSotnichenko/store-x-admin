@@ -11,22 +11,14 @@ export async function PATCH(
     const { userId } = auth();
     const body = await req.json();
 
-    const { name, botToken } = body;
+    const { name } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
     }
 
-    // if (!name) {
-    //   return new NextResponse("Name is required", { status: 400 });
-    // }
-
-    // if (!botToken) {
-    //   return new NextResponse("Bot token is required", { status: 400 });
-    // }
-
-    if (!name && !botToken) {
-      return new NextResponse("Name or bot token is required", { status: 400 });
+    if (!name) {
+      return new NextResponse("Name is required", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -40,7 +32,6 @@ export async function PATCH(
       },
       data: {
         name,
-        botToken,
       },
     });
 
