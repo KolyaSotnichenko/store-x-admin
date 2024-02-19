@@ -7,11 +7,13 @@ import prismadb from "@/lib/prismadb";
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const signature = headers().get("stripe-signature")!;
+  // const signature = headers().get("Stripe-Signature") as string;
+  const signature = req.headers.get("stripe-signature");
 
   let event: Stripe.Event;
 
   try {
+    if (!signature) return;
     event = stripe.webhooks.constructEvent(
       body,
       signature,
