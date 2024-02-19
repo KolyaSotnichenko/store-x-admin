@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
   let event: Stripe.Event;
 
   try {
-    if (!signature) return;
     event = stripe.webhooks.constructEvent(
       body,
       signature,
