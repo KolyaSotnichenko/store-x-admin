@@ -13,7 +13,7 @@ export async function PATCH(
     const { userId } = auth();
     const body = await req.json();
 
-    const { appUrl, botToken } = body;
+    const { appUrl, botToken, botWelcomeText } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
@@ -39,8 +39,6 @@ export async function PATCH(
       return new NextResponse("Bot token is not valid", { status: 400 });
     }
 
-    await TelegrafService.startBot(bot, appUrl, params.storeId);
-
     const store = await prismadb.store.updateMany({
       where: {
         id: params.storeId,
@@ -50,6 +48,7 @@ export async function PATCH(
         appUrl,
         botToken,
         botName: validBotToken.botName,
+        botWelcomeText,
       },
     });
 

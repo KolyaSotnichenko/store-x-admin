@@ -36,6 +36,7 @@ export async function POST(req: Request) {
         userId,
         botName: "",
         botToken: "",
+        botWelcomeText: "",
         appUrl: process.env.FRONTEND_STORE_URL!,
       },
     });

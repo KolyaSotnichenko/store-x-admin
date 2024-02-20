@@ -20,7 +20,7 @@ module.exports = class BotService {
       newBot.command("start", (ctx: any) => {
         try {
           ctx.replyWithHTML(
-            BotService.getHelloHtml(ctx),
+            BotService.getHelloHtml(ctx, store.botWelcomeText),
             BotService.getActionButtons(
               `${process.env.FRONTEND_STORE_URL}?storeId=${store.id}`
             )
@@ -39,18 +39,12 @@ module.exports = class BotService {
     return Markup.keyboard([Markup.button.webApp("Open Shop", url, false)]);
   }
 
-  static getHelloHtml(ctx: any) {
+  static getHelloHtml(ctx: any, text: string) {
     const { first_name, last_name, username } = ctx.update.message.from;
     const user =
       first_name && last_name ? `${first_name} ${last_name}` : username;
 
-    const response_message = `
-    <strong>Привет, ${user} ✌</strong> 
-    \n
-    <b>Ты попал к одному из тестовых script ботов.</b> 
-    \n
-    <b>Я представляю собой интернет-магазин, встроенный в ТГ.</b> 
-    `;
+    const response_message = text;
 
     return response_message;
   }

@@ -3,13 +3,11 @@
 import * as z from "zod";
 import axios from "axios";
 import { FC, useState } from "react";
-import { useOrigin } from "@/hooks/use-origin";
 import { useParams, useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Store } from "@prisma/client";
 import toast from "react-hot-toast";
-import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -23,10 +21,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Heading } from "@/components/ui/heading";
 import TooltipInfo from "@/components/tooltipInfo";
+import TipTap from "./Tiptap";
 
 const formSchema = z.object({
   botToken: z.string().min(43).max(46),
   appUrl: z.string().min(10),
+  botWelcomeText: z.string().min(50),
 });
 
 type BotFormValues = z.infer<typeof formSchema>;
@@ -73,7 +73,7 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 gap-8">
             <FormField
               control={form.control}
               name="appUrl"
@@ -102,7 +102,9 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
               name="botToken"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Token</FormLabel>
+                  <div className="flex items-center gap-x-2">
+                    <FormLabel>Token</FormLabel>
+                  </div>
                   <FormControl>
                     <Input
                       disabled={loading}
@@ -115,6 +117,19 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
               )}
             />
           </div>
+          <FormField
+            control={form.control}
+            name="botWelcomeText"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Welcome text</FormLabel>
+                <FormControl>
+                  <TipTap content={field.value} onChange={field.onChange} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Button disabled={loading} className="ml-auto" type="submit">
             Save changes
           </Button>
