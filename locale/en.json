@@ -1,0 +1,76 @@
+{
+    "General": {
+        "something_went_wrong": "Something went wrong",
+        "add_btn": "Add New"
+    },
+    "Dashboard": {
+        "title": "Dashboard",
+        "subtitle": "Overview of your store",
+        "total_revenue": "Total Revenue",
+        "sales": "Sales",
+        "products_in_stock": "Products In Stock",
+        "overview": "Overview"
+    },
+    "Navbar": {
+        "no_store_found": "No store found",
+        "create_store": "Create Store",
+        "search_store": "Search store...",
+        "stores": "Stores",
+        "overview": "Overview",
+        "billboards": "Billboards",
+        "categories": "Categories",
+        "sizes": "Sizes",
+        "colors": "Colors",
+        "products": "Products",
+        "orders": "Orders",
+        "telegram_bot": "Telegram bot",
+        "settings": "Settings",
+        "open_bot": "Open Bot"
+    },
+    "Table": {
+        "search": "Search",
+        "no_results": "No results.",
+        "previous": "Previous",
+        "next": "Next"
+    },
+    "Billboards": {
+        "title": "Billboards",
+        "subtitle": "Manage billboards for your store",
+        "api_title": "API",
+        "api_subtitle": "API Calls for Billboards",
+        "edit_billboard": "Edit billboard",
+        "create_billboard": "Create billboard",
+        "edit_a_billboard": "Edit a billboard",
+        "add_a_new_billboard": "Add a new billboard",
+        "billboard_updated": "Billboard updated",
+        "billboard_created": "Billboard created",
+        "save_changes": "Save changes",
+        "create": "Create",
+        "billboard_deleted": "Billboard deleted",
+        "make_sure_you_removed_all_categories_using_this_billboard_first": "Make sure you removed all categories using this billboard first",
+        "background_image": "Background image",
+        "label": "Label",
+        "placeholder_label": "Billboard label"
+    },
+    "Categories": {
+        "title": "Categories",
+        "subtitle": "Manage categories for your store",
+        "api_title": "API",
+        "api_subtitle": "API Calls for Categories",
+        "edit_categories": "Edit category",
+        "create_category": "Create category",
+        "edit_a_category": "Edit a category",
+        "add_a_new_category": "Add a new category",
+        "category_updated": "Category updated",
+        "category_created": "Category created",
+        "save_changes": "Save changes",
+        "create": "Create",
+        "category_deleted": "Category deleted",
+        "make_sure_you_removed_all_categories_using_this_billboard_first": "Make sure you removed all products using this category first",
+        "background_image": "Background image",
+        "label": "Label",
+        "placeholder_label": "Category label",
+        "billboard_label": "Billboard",
+        "placeholder_billboard_label": "Select a billboard"
+    }
+}

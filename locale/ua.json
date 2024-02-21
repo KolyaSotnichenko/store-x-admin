@@ -1,0 +1,76 @@
+{
+    "General": {
+        "something_went_wrong": "Щось пішло не так",
+        "add_btn": "Додати"
+    },
+    "Dashboard": {
+        "title": "Панель",
+        "subtitle": "Огляд вашого магазину",
+        "total_revenue": "Загальна виручка",
+        "sales": "Продажі",
+        "products_in_stock": "Продукти в наявності",
+        "overview": "Огляд"
+    },
+    "Navbar": {
+        "no_store_found": "Магазин не знайдено",
+        "create_store": "Створити магазин",
+        "search_store": "Пошук магазину...",
+        "stores": "Магазини",
+        "overview": "Огляд",
+        "billboards": "Білборди",
+        "categories": "Категорії",
+        "sizes": "Розміри",
+        "colors": "Кольори",
+        "products": "Продукти",
+        "orders": "Замовлення",
+        "telegram_bot": "Telegram бот",
+        "settings": "Налаштування",
+        "open_bot": "Відкрити бота"
+    },
+    "Table": {
+        "search": "Пошук",
+        "no_results": "Немає результатів.",
+        "previous": "Попередній",
+        "next": "Далі"
+    },
+    "Billboards": {
+        "title": "Білборди",
+        "subtitle": "Керуйте білбордами свого магазину",
+        "api_title": "API",
+        "api_subtitle": "Виклики API для білбордів",
+        "edit_billboard": "Редагувати білборд",
+        "create_billboard": "Створити білборд",
+        "edit_a_billboard": "Редагувати білборд",
+        "add_a_new_billboard": "Додайте новий білборд",
+        "billboard_updated": "Білборд оновлений",
+        "billboard_created": "Створено білборд",
+        "save_changes": "Зберегти зміни",
+        "create": "Створити",
+        "billboard_deleted": "Білборд видалено",
+        "make_sure_you_removed_all_categories_using_this_billboard_first": "Спершу переконайтеся, що ви видалили всі категорії з цим білбордом",
+        "background_image": "Фонове зображення",
+        "label": "Назва",
+        "placeholder_label": "Назва білборду"
+    },
+    "Categories": {
+        "title": "Категорії",
+        "subtitle": "Керуйте категоріями для свого магазину",
+        "api_title": "API",
+        "api_subtitle": "Виклики API для категорій",
+        "edit_category": "Редагувати категорію",
+        "create_category": "Створити категорію",
+        "edit_a_category": "Редагувати категорію",
+        "add_a_new_category": "Додайте нову категорію",
+        "category_updated": "Категорію оновлено",
+        "category_created": "Категорія створена",
+        "save_changes": "Зберегти зміни",
+        "create": "Створити",
+        "category_deleted": "Категорію видалено",
+        "make_sure_you_removed_all_categories_using_this_billboard_first": "Спершу переконайтеся, що ви видалили всі продукти, які використовують цю категорію",
+        "background_image": "Background image",
+        "label": "Назва",
+        "placeholder_label": "Назва категорії",
+        "billboard_label": "Білбоард",
+        "placeholder_billboard_label": "Виберіть білборд"
+    }
+}

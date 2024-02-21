@@ -9,6 +9,7 @@ import { getSalesCount } from "@/actions/get-sales-count";
 import { getGraphRevenue } from "@/actions/get-graph-revenue";
 import { getStockCount } from "@/actions/get-stock-count";
 import { formatter } from "@/lib/utils";
+import { getTranslations } from "next-intl/server";
 
 interface DashboardPageProps {
   params: {
@@ -22,16 +23,18 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
   const salesCount = await getSalesCount(params.storeId);
   const stockCount = await getStockCount(params.storeId);
 
+  const t = await getTranslations("Dashboard");
+
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <Heading title="Dashboard" description="Overview of your store" />
+        <Heading title="Dashboard.title" subtitle="Dashboard.subtitle" />
         <Separator />
         <div className="grid gap-4 grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Total Revenue
+                {t("total_revenue")}
               </CardTitle>
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
@@ -43,7 +46,9 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Sales</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                {t("sales")}
+              </CardTitle>
               <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -53,7 +58,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Products In Stock
+                {t("products_in_stock")}
               </CardTitle>
               <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
@@ -64,7 +69,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
         </div>
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
+            <CardTitle>{t("overview")}</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
             <Overview data={graphRevenue} />
