@@ -25,6 +25,7 @@ import { Heading } from "@/components/ui/heading";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
   name: z.string().min(2),
@@ -40,6 +41,8 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
   const origin = useOrigin();
+
+  const t = useTranslations();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -86,10 +89,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
         loading={loading}
       />
       <div className="flex items-center justify-between">
-        <Heading
-          title="Store settings"
-          description="Manage store preferences"
-        />
+        <Heading title="Settings.title" subtitle="Settings.subtitle" />
         <Button
           disabled={loading}
           variant="destructive"
@@ -111,11 +111,11 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t("Settings.settings_name")}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Store name"
+                      placeholder={t("Settings.placeholder_settings_name")}
                       {...field}
                     />
                   </FormControl>
@@ -125,7 +125,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
             />
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
-            Save changes
+            {t("Settings.save_changes")}
           </Button>
         </form>
       </Form>

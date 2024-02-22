@@ -23,6 +23,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/ui/heading";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
   name: z.string().min(2),
@@ -41,13 +42,15 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
 
+  const t = useTranslations("Colors");
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Edit color" : "Create color";
-  const description = initialData ? "Edit a color." : "Add a new color";
-  const toastMessage = initialData ? "Color updated." : "Color created.";
-  const action = initialData ? "Save changes" : "Create";
+  const title = initialData ? t("edit_color") : t("create_color");
+  const subtitle = initialData ? t("edit_a_color") : t("add_a_new_color");
+  const toastMessage = initialData ? t("color_updated") : t("color_created");
+  const action = initialData ? t("save_changes") : t("create");
 
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
@@ -83,9 +86,11 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
       await axios.delete(`/api/${params.storeId}/colors/${params.colorId}`);
       router.refresh();
       router.push(`/${params.storeId}/colors`);
-      toast.success("Color deleted.");
+      toast.success(t("color_deleted"));
     } catch (error: any) {
-      toast.error("Make sure you removed all products using this color first.");
+      toast.error(
+        t("make_sure_you_removed_all_products_using_this_color_first")
+      );
     } finally {
       setLoading(false);
       setOpen(false);
@@ -101,7 +106,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
         loading={loading}
       />
       <div className="flex items-center justify-between">
-        <Heading title={title} description={description} />
+        <Heading title={title} subtitle={subtitle} />
         {initialData && (
           <Button
             disabled={loading}
@@ -125,11 +130,11 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t("name")}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Color name"
+                      placeholder={t("placeholder_name")}
                       {...field}
                     />
                   </FormControl>
@@ -142,12 +147,12 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Value</FormLabel>
+                  <FormLabel>{t("value")}</FormLabel>
                   <FormControl>
                     <div className="flex items-center gap-x-4">
                       <Input
                         disabled={loading}
-                        placeholder="Color value"
+                        placeholder={t("placeholder_value")}
                         {...field}
                       />
                       <div

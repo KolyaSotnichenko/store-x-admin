@@ -3,7 +3,7 @@ import createMiddleware from "next-intl/middleware";
 
 const intlMiddleware = createMiddleware({
   locales: ["en", "ua"],
-
+  localePrefix: "never",
   defaultLocale: "en",
 });
 

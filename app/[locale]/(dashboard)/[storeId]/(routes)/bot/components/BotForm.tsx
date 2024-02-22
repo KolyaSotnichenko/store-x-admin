@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Heading } from "@/components/ui/heading";
 import TooltipInfo from "@/components/tooltipInfo";
 import TipTap from "./Tiptap";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
   botToken: z.string().min(43).max(46),
@@ -38,6 +39,8 @@ interface BotFormProps {
 const BotForm: FC<BotFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
+
+  const t = useTranslations("Bot");
 
   const [loading, setLoading] = useState(false);
 
@@ -62,10 +65,7 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading
-          title="Telegram bot settings"
-          description="Manage bot preferences"
-        />
+        <Heading title="Bot.title" subtitle="Bot.subtitle" />
       </div>
       <Separator />
       <Form {...form}>
@@ -80,11 +80,8 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
               render={({ field }) => (
                 <FormItem>
                   <div className="flex items-center gap-x-2">
-                    <FormLabel>Web app url</FormLabel>
-                    <TooltipInfo
-                      info="Your web app url. Default you are will use our web app in telegram
-            bot!"
-                    />
+                    <FormLabel>{t("web_app_url")}</FormLabel>
+                    <TooltipInfo info={t("tooltip_info")} />
                   </div>
                   <FormControl>
                     <Input
@@ -103,7 +100,7 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
               render={({ field }) => (
                 <FormItem>
                   <div className="flex items-center gap-x-2">
-                    <FormLabel>Token</FormLabel>
+                    <FormLabel>{t("token")}</FormLabel>
                   </div>
                   <FormControl>
                     <Input
@@ -122,7 +119,7 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
             name="botWelcomeText"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Welcome text</FormLabel>
+                <FormLabel>{t("welcome_text")}</FormLabel>
                 <FormControl>
                   <TipTap content={field.value} onChange={field.onChange} />
                 </FormControl>
@@ -131,7 +128,7 @@ const BotForm: FC<BotFormProps> = ({ initialData }) => {
             )}
           />
           <Button disabled={loading} className="ml-auto" type="submit">
-            Save changes
+            {t("save_changes")}
           </Button>
         </form>
       </Form>

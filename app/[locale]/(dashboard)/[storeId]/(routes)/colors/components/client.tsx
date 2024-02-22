@@ -10,28 +10,29 @@ import { Separator } from "@/components/ui/separator";
 import { ApiList } from "@/components/ui/api-list";
 
 import { columns, ColorColumn } from "./columns";
+import { useTranslations } from "next-intl";
 
 interface ColorClientProps {
   data: ColorColumn[];
 }
 
-export const ColorClient: React.FC<ColorClientProps> = ({
-  data
-}) => {
+export const ColorClient: React.FC<ColorClientProps> = ({ data }) => {
   const params = useParams();
   const router = useRouter();
+
+  const t = useTranslations();
 
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading title={`Colors (${data.length})`} description="Manage colors for your products" />
+        <Heading title="Colors.title" subtitle="Colors.subtitle" />
         <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
-          <Plus className="mr-2 h-4 w-4" /> Add New
+          <Plus className="mr-2 h-4 w-4" /> {t("General.add_btn")}
         </Button>
       </div>
       <Separator />
       <DataTable searchKey="name" columns={columns} data={data} />
-      <Heading title="API" description="API Calls for Colors" />
+      <Heading title="Colors.api_title" subtitle="Colors.api_subtitle" />
       <Separator />
       <ApiList entityName="colors" entityIdName="colorId" />
     </>

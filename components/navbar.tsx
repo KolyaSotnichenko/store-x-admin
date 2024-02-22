@@ -6,9 +6,13 @@ import { MainNav } from "@/components/main-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import prismadb from "@/lib/prismadb";
 import AppBtn from "./app-btn";
+import { LocaleToggle } from "./locale-toggle";
+import { locales } from "@/config";
+import { getTranslations } from "next-intl/server";
 
 const Navbar = async ({ botName }: { botName: string }) => {
   const { userId } = auth();
+  const t = await getTranslations("General");
 
   if (!userId) {
     redirect("/sign-in");
@@ -30,6 +34,7 @@ const Navbar = async ({ botName }: { botName: string }) => {
           {/* <PaymentButton /> */}
 
           <ThemeToggle />
+          <LocaleToggle />
           <UserButton afterSignOutUrl="/" />
         </div>
       </div>

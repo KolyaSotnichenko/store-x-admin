@@ -103,7 +103,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
       toast.success(t("category_deleted"));
     } catch (error: any) {
       toast.error(
-        "Make sure you removed all products using this category first."
+        t("make_sure_you_removed_all_products_using_this_category_first")
       );
     } finally {
       setLoading(false);
