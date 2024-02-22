@@ -11,7 +11,6 @@ export default authMiddleware({
   beforeAuth: (req) => {
     return intlMiddleware(req);
   },
-
   publicRoutes: ["/api/:path*"],
 });
 

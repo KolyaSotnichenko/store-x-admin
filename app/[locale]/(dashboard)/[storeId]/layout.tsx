@@ -14,8 +14,6 @@ export default async function DashboardLayout({
   params: { storeId: string; locale: string };
 }) {
   const { userId } = auth();
-  const messages = await getMessages();
-  const timeZone = await getTimeZone();
 
   if (!userId) {
     redirect("/sign-in");
@@ -34,14 +32,8 @@ export default async function DashboardLayout({
 
   return (
     <>
-      <LocaleProvider
-        locale={params.locale}
-        messages={messages}
-        timeZone={timeZone}
-      >
-        <Navbar botName={store.botName} />
-        {children}
-      </LocaleProvider>
+      <Navbar botName={store.botName} />
+      {children}
     </>
   );
 }
