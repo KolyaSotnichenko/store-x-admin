@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import "./globals.css";
 import LocaleProvider from "@/providers/locale-provider";
 import { getLocale, getMessages, getTimeZone } from "next-intl/server";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default async function RootLayout({
         <html lang={locale}>
           <body className={inter.className}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <SpeedInsights />
               <ToastProvider />
               <ModalProvider />
               {children}
