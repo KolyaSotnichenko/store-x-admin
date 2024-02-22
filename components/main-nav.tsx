@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import { useTranslations } from "use-intl";
 
 export function MainNav({
   className,
@@ -11,51 +12,52 @@ export function MainNav({
 }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname();
   const params = useParams();
+  const t = useTranslations("Navbar");
 
   const routes = [
     {
       href: `/${params.storeId}`,
-      label: "Overview",
+      label: t("overview"),
       active: pathname === `/${params.storeId}`,
     },
     {
       href: `/${params.storeId}/billboards`,
-      label: "Billboards",
+      label: t("billboards"),
       active: pathname === `/${params.storeId}/billboards`,
     },
     {
       href: `/${params.storeId}/categories`,
-      label: "Categories",
+      label: t("categories"),
       active: pathname === `/${params.storeId}/categories`,
     },
     {
       href: `/${params.storeId}/sizes`,
-      label: "Sizes",
+      label: t("sizes"),
       active: pathname === `/${params.storeId}/sizes`,
     },
     {
       href: `/${params.storeId}/colors`,
-      label: "Colors",
+      label: t("colors"),
       active: pathname === `/${params.storeId}/colors`,
     },
     {
       href: `/${params.storeId}/products`,
-      label: "Products",
+      label: t("products"),
       active: pathname === `/${params.storeId}/products`,
     },
     {
       href: `/${params.storeId}/orders`,
-      label: "Orders",
+      label: t("orders"),
       active: pathname === `/${params.storeId}/orders`,
     },
     {
       href: `/${params.storeId}/bot`,
-      label: "Telegram bot",
+      label: t("telegram_bot"),
       active: pathname === `/${params.storeId}/bot`,
     },
     {
       href: `/${params.storeId}/settings`,
-      label: "Settings",
+      label: t("settings"),
       active: pathname === `/${params.storeId}/settings`,
     },
   ];
