@@ -6,6 +6,8 @@ import { ToastProvider } from "@/providers/toast-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import "./globals.css";
+import LocaleProvider from "@/providers/locale-provider";
+import { getLocale, getMessages, getTimeZone } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,22 +18,28 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: any;
 }) {
+  const messages = await getMessages();
+  const timeZone = await getTimeZone();
+  const locale = await getLocale();
+
   return (
-    <ClerkProvider>
-      <html lang={locale}>
-        <body className={inter.className}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ToastProvider />
-            <ModalProvider />
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <LocaleProvider locale={locale} messages={messages} timeZone={timeZone}>
+      <ClerkProvider>
+        <html lang={locale}>
+          <body className={inter.className}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <ToastProvider />
+              <ModalProvider />
+              {children}
+            </ThemeProvider>
+          </body>
+        </html>
+      </ClerkProvider>
+    </LocaleProvider>
   );
 }
