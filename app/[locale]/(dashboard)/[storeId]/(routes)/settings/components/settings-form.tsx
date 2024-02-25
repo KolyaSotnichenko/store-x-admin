@@ -26,6 +26,8 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
 import { useTranslations } from "next-intl";
+import { PremiumCard } from "@/components/premium-card";
+import { useUser } from "@clerk/nextjs";
 
 const formSchema = z.object({
   name: z.string().min(2),
@@ -43,6 +45,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   const origin = useOrigin();
 
   const t = useTranslations();
+  const { user } = useUser();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -129,12 +132,20 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
           </Button>
         </form>
       </Form>
-      <Separator />
-      <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        variant="public"
-        description={`${origin}/api/${params.storeId}`}
-      />
+      {user?.publicMetadata.premium ? (
+        <>
+          <Separator />
+          <ApiAlert
+            title="NEXT_PUBLIC_API_URL"
+            variant="public"
+            description={`${origin}/api/${params.storeId}`}
+          />
+        </>
+      ) : (
+        <div className="w-full flex justify-center">
+          <PremiumCard />
+        </div>
+      )}
     </>
   );
 };

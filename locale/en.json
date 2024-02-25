@@ -2,10 +2,22 @@
     "General": {
         "something_went_wrong": "Something went wrong",
         "add_btn": "Add New",
+        "get_premium": "Get Premium",
         "alert_modal_title": "Are you sure?",
         "alert_modal_description": "This action cannot be undone.",
         "alert_modal_cancel": "Cancel",
         "alert_modal_continue": "Continue"
+    },
+    "PremiumCard": {
+        "title": "Premium",
+        "subtitle": "With premium you will get:",
+        "unlimited_stores": "Unlimited stores.",
+        "unlimited_products": "Unlimited products.",
+        "unlimited_categories": "Unlimited categories.",
+        "unlimited_billboard": "Unlimited billboard.",
+        "api_for_your_custom_web_apps": "API for your custom web apps.",
+        "be_the_first_to_receive_new_updates_and_features": "Be the first to receive new updates and features!",
+        "get_premium": "Get Premium"
     },
     "Dashboard": {
         "title": "Dashboard",
@@ -19,6 +31,7 @@
         "no_store_found": "No store found",
         "create_store": "Create Store",
         "search_store": "Search store...",
+        "get_premium": "Get Premium",
         "stores": "Stores",
         "overview": "Overview",
         "billboards": "Billboards",

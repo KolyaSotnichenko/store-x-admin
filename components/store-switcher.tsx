@@ -22,6 +22,7 @@ import {
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useUser } from "@clerk/nextjs";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -39,6 +40,7 @@ export default function StoreSwitcher({
   const params = useParams();
   const router = useRouter();
   const t = useTranslations("Navbar");
+  const { user } = useUser();
 
   const formattedItems = items.map((item) => ({
     label: item.name,
@@ -101,15 +103,26 @@ export default function StoreSwitcher({
           <CommandSeparator />
           <CommandList>
             <CommandGroup>
-              <CommandItem
-                onSelect={() => {
-                  setOpen(false);
-                  storeModal.onOpen();
-                }}
-              >
-                <PlusCircle className="mr-2 h-5 w-5" />
-                {t("create_store")}
-              </CommandItem>
+              {!user?.publicMetadata.premium && formattedItems.length >= 1 ? (
+                <CommandItem
+                  onSelect={() => {
+                    setOpen(false);
+                    router.push("https://t.me/Kolya_Sotnichenko");
+                  }}
+                >
+                  <Button>{t("get_premium")}</Button>
+                </CommandItem>
+              ) : (
+                <CommandItem
+                  onSelect={() => {
+                    setOpen(false);
+                    storeModal.onOpen();
+                  }}
+                >
+                  <PlusCircle className="mr-2 h-5 w-5" />
+                  {t("create_store")}
+                </CommandItem>
+              )}
             </CommandGroup>
           </CommandList>
         </Command>

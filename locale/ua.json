@@ -2,10 +2,22 @@
     "General": {
         "something_went_wrong": "Щось пішло не так",
         "add_btn": "Додати",
+        "get_premium": "Отримайте Premium",
         "alert_modal_title": "Ти впевнений?",
         "alert_modal_description": "Цю дію не можна скасувати.",
         "alert_modal_cancel": "Скасувати",
         "alert_modal_continue": "Продовжити"
+    },
+    "PremiumCard": {
+        "title": "Premium",
+        "subtitle": "З преміум ви отримаєте:",
+        "unlimited_stores": "Необмежена кількість магазинів.",
+        "unlimited_products": "Необмежена кількість продуктів.",
+        "unlimited_categories": "Необмежена кількість категорій.",
+        "unlimited_billboard": "Необмежениа кількість білбордів.",
+        "api_for_your_custom_web_apps": "API для ваших власних веб-програм.",
+        "be_the_first_to_receive_new_updates_and_features": "Отримайте нові оновлення та функції першими!",
+        "get_premium": "Отримайте Premium"
     },
     "Dashboard": {
         "title": "Панель",
@@ -19,6 +31,7 @@
         "no_store_found": "Магазин не знайдено",
         "create_store": "Створити магазин",
         "search_store": "Пошук магазину...",
+        "get_premium": "Отримайте Premium",
         "stores": "Магазини",
         "overview": "Огляд",
         "billboards": "Білборди",
