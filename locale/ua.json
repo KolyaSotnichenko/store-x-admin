@@ -105,8 +105,8 @@
         "create": "Створити",
         "color_deleted": "Колір видалено",
         "make_sure_you_removed_all_products_using_this_color_first": "Спершу переконайтеся, що ви видалили всі продукти, які використовують цей колір",
-        "name": "Name",
-        "placeholder_name": "Color name",
+        "name": "Назва",
+        "placeholder_name": "Назва кольору",
         "value": "HEX",
         "placeholder_value": "#ff0000"
     },

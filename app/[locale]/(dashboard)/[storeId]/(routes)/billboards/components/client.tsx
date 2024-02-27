@@ -39,13 +39,6 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
             <Plus className="mr-2 h-4 w-4" /> {t("General.add_btn")}
           </Button>
         )}
-        {user?.publicMetadata.premium ? (
-          <Button
-            onClick={() => router.push(`/${params.storeId}/billboards/new`)}
-          >
-            <Plus className="mr-2 h-4 w-4" /> {t("General.add_btn")}
-          </Button>
-        ) : null}
       </div>
       <Separator />
       <DataTable searchKey="label" columns={columns} data={data} />

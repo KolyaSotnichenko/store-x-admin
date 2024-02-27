@@ -105,7 +105,7 @@
         "color_deleted": "Color deleted",
         "make_sure_you_removed_all_products_using_this_color_first": "Make sure you removed all products using this category first",
         "name": "Name",
-        "placeholder_label": "Color label",
+        "placeholder_name": "Color name",
         "value": "HEX",
         "placeholder_value": "#ff0000"
     },
