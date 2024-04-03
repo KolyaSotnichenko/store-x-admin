@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs';
+import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs";
 
-import prismadb from '@/lib/prismadb';
- 
+import prismadb from "@/lib/prismadb";
+
 export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
@@ -30,11 +30,21 @@ export async function POST(
       return new NextResponse("Store id is required", { status: 400 });
     }
 
+    const existingSize = await prismadb.size.findFirst({
+      where: { name, storeId: params.storeId },
+    });
+
+    if (existingSize) {
+      return new NextResponse("Size name already exists", {
+        status: 409,
+      });
+    }
+
     const storeByUserId = await prismadb.store.findFirst({
       where: {
         id: params.storeId,
-        userId
-      }
+        userId,
+      },
     });
 
     if (!storeByUserId) {
@@ -45,16 +55,16 @@ export async function POST(
       data: {
         name,
         value,
-        storeId: params.storeId
-      }
+        storeId: params.storeId,
+      },
     });
-  
+
     return NextResponse.json(size);
   } catch (error) {
-    console.log('[SIZES_POST]', error);
+    console.log("[SIZES_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
-};
+}
 
 export async function GET(
   req: Request,
@@ -67,13 +77,13 @@ export async function GET(
 
     const sizes = await prismadb.size.findMany({
       where: {
-        storeId: params.storeId
-      }
+        storeId: params.storeId,
+      },
     });
-  
+
     return NextResponse.json(sizes);
   } catch (error) {
-    console.log('[SIZES_GET]', error);
+    console.log("[SIZES_GET]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
-};
+}

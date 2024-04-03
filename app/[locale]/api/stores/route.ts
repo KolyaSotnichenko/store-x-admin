@@ -18,6 +18,14 @@ export async function POST(req: Request) {
       return new NextResponse("Name is required", { status: 400 });
     }
 
+    const existingStore = await prismadb.store.findFirst({
+      where: { name },
+    });
+
+    if (existingStore) {
+      return new NextResponse("Store name already exists", { status: 409 }); // Conflict status code
+    }
+
     // if (!botToken) {
     //   return new NextResponse("Bot token is required", { status: 400 });
     // }
